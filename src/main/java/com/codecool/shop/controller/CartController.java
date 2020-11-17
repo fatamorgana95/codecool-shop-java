@@ -17,15 +17,18 @@ public class CartController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CartDao orderDataStore = CartDaoMem.getInstance();
+        CartDao cartDataStore = CartDaoMem.getInstance();
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
         //indexoutofbound
-        context.setVariable("order", ((CartDaoMem) orderDataStore).findLast()); //downcast
+        context.setVariable("cart", ((CartDaoMem) cartDataStore).findLast()); //downcast
 
         engine.process("cart.html", context, resp.getWriter());
     }
+
+
+
 
 }

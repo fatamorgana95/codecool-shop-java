@@ -5,13 +5,15 @@ import java.util.List;
 
 public class Cart extends BaseModel{
 
+
+
     private List<LineItem> lineItems;
     private int totalPrice = 0;
+    private static Cart instance;
 
-    public Cart(String name, Product product) {
+    public Cart(String name) {
         super(name);
         this.lineItems = new ArrayList<>();
-        addProduct(product);
     }
 
     public void setProducts(ArrayList<LineItem> lineItems) {
@@ -20,6 +22,14 @@ public class Cart extends BaseModel{
 
     public List<LineItem> getLineItems() {
         return this.lineItems;
+    }
+
+    public static Cart getInstance() {
+        if (instance == null) {
+            String name = "actual";
+            instance = new Cart(name);
+        }
+        return instance;
     }
 
 
@@ -72,5 +82,9 @@ public class Cart extends BaseModel{
                 this.id,
                 this.name
         );
+    }
+
+    public int getAddedProductsQuantity() {
+        return lineItems.stream().mapToInt(LineItem::getQuantity).sum();
     }
 }
