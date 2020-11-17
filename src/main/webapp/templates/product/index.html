@@ -1,67 +1,106 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Rapid Bootstrap Template - Index</title>
     <meta name="author" content="Codecool" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <title>Codecool Shop</title>
+    <title>Dragon Shop</title>
 
-    <!-- Bootstrap components -->
-    <!-- Latest compiled and minified Jquery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- Favicons -->
+    <link href="static/img/favicon.png" rel="icon">
+    <link href="static/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <!--Latest compiled and minified Popper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <!-- Vendor CSS Files -->
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="static/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="static/vendor/aos/aos.css" rel="stylesheet">
 
-    <!-- Latest compiled and minified CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <!-- End of Bootstrap components -->
+    <!-- Template Main CSS File -->
+    <link href="static/css/style.css" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+
+    <!-- =======================================================
+    * Template Name: Rapid - v2.2.0
+    * Template URL: https://bootstrapmade.com/rapid-multipurpose-bootstrap-business-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
 </head>
 
 <body>
-
-<div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
-</div>
-
-<div class="container">
-    <div class="card">
-        <strong th:text="${category.name}">Category Title</strong>
-    </div>
-
-    <div id="products" class="row">
-        <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
-            <div class="card">
-                <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
-                <div class="card-header">
-                    <h4 class="card-title" th:text="${prod.name}">Product name</h4>
-                    <p class="card-text" th:text="${prod.description}">Product description... </p>
-                </div>
-                <div class="card-body">
-                    <div class="card-text">
-                        <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
-                    </div>
-                    <div class="card-text">
-                        <a class="btn btn-success" href="#">Add to cart</a>
-                    </div>
-                </div>
-            </div>
+<!-- ======= Top Bar ======= -->
+<div id="topbar" class="d-none d-lg-flex align-items-end fixed-top topbar-transparent">
+    <div class="container d-flex justify-content-end">
+        <div class="social-links">
+            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
         </div>
     </div>
-
 </div>
+
+<main id="main">
+
+    <!-- ======= Products Section ======= -->
+    <section id="services" class="services section-bg">
+        <div>
+            <h1>Dragon Shop</h1>
+        </div>
+        <div class="container" data-aos="fade-up">
+
+            <header class="section-header">
+                <h3>Dragons</h3>
+                <p>They are real.</p>
+            </header>
+            <div class="card">
+                <strong th:text="${category.name}">Category Title</strong>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100" th:each="prod,iterStat : ${products}">
+                    <div class="box">
+                        <div class="icon" style="background: #fceef3;"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
+                        <h4 class="title" th:text="${prod.name}">Product Name</h4>
+                        <img class="img" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img2/product_' + ${prod.id} + '.jpg'" alt="" />
+                        <p class="description" th:text="${prod.description}">Product Description</p>
+                        <p class="description" th:text="${prod.getPrice()}">100 USD</p>
+                        <a class="btn" href="#">Add to cart</a>
+                    </div>
+                </div>
+        </div>
+
+        </div>
+    </section>
+    <!-- End Services Section -->
+</main>
 
 <div th:replace="footer.html :: copy"></div>
 
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="static/vendor/jquery/jquery.min.js"></script>
+<script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="static/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="static/vendor/php-email-form/validate.js"></script>
+<script src="static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="static/vendor/counterup/counterup.min.js"></script>
+<script src="static/vendor/venobox/venobox.min.js"></script>
+<script src="static/vendor/waypoints/jquery.waypoints.min.js"></script>
+<script src="static/vendor/aos/aos.js"></script>
+
+<!-- Template Main JS File -->
+<script src="static/js/main.js"></script>
 </body>
+
 </html>
