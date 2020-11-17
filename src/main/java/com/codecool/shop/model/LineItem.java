@@ -2,15 +2,18 @@ package com.codecool.shop.model;
 
 public class LineItem extends BaseModel{
 
-    private int quantity = 0;
-    private int subTotalPrice = 0;
+    private final float unitPrice;
+    private int quantity;
+    private float subTotalPrice = 0;
 
     private final Product product;
 
     public LineItem(Product product, String name) {
         super(name);
         this.product = product;
-        increaseQuantity();
+        this.quantity = 1;
+        this.unitPrice = product.getDefaultPrice();
+        this.subTotalPrice = unitPrice;
     }
 
     public int getQuantity() {
