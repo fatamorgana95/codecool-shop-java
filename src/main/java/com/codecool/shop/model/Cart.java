@@ -8,7 +8,7 @@ public class Cart extends BaseModel{
 
 
     private List<LineItem> lineItems;
-    private int totalPrice = 0;
+    private float totalPrice = 0;
     private static Cart instance;
 
     public Cart(String name) {
