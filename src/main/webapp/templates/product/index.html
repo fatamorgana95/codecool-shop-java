@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Rapid Bootstrap Template - Index</title>
+    <title>Dragon Shop</title>
     <meta name="author" content="Codecool" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
@@ -61,8 +61,12 @@
                 <p>They are real.</p>
             </header>
             <div class="card">
-                <strong th:text="${category.name}">Category Title</strong>
+                <select name="week_scroll">
+                    <option>All</option>
+                    <option th:each="cat : ${category}" th:value="${cat.name}" th:text="${cat.name}"/>
+                </select>
             </div>
+
 
             <div class="row">
 
@@ -70,9 +74,9 @@
                     <div class="box">
                         <div class="icon" style="background: #fceef3;"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
                         <h4 class="title" th:text="${prod.name}">Product Name</h4>
-                        <img class="img" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img2/product_' + ${prod.id} + '.jpg'" alt="" />
+                        <img class="img" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/images/' + ${prod.image}" alt="" />
                         <p class="description" th:text="${prod.description}">Product Description</p>
-                        <p class="description" th:text="${prod.getPrice()}">100 USD</p>
+                        <strong><p class="description" th:text="${prod.getPrice()}">100 USD</p></strong>
                         <a class="btn" href="#">Add to cart</a>
                     </div>
                 </div>
