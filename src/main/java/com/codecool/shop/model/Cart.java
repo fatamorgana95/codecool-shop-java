@@ -3,12 +3,12 @@ package com.codecool.shop.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Order extends BaseModel{
+public class Cart extends BaseModel{
 
     private List<LineItem> lineItems;
     private int totalPrice = 0;
 
-    public Order(String name, Product product) {
+    public Cart(String name, Product product) {
         super(name);
         this.lineItems = new ArrayList<>();
         addProduct(product);
@@ -54,19 +54,14 @@ public class Order extends BaseModel{
         } else {
             int actualQuantity = lineItem.getQuantity();
             int difference = actualQuantity-prevQuantity;
-            totalPrice += difference * lineItem.getDefaultPrice();
+            totalPrice += difference * lineItem.getDefaultPrice(); //downcast
         }
 
     }*/
 
 //optional?
     private LineItem getLineItemByProductId(int productId) {
-        for (LineItem item : lineItems){
-            if (item.id == productId){
-                return item;
-            }
-        }
-        return null;
+        return lineItems.stream().filter(item -> item.id == productId).findFirst().orElse(null);
     }
 
 
