@@ -37,6 +37,26 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
 }
 
+.small-button {
+  background-color: #0c5460;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 1;
+  font-size: 16px;
+  border-radius: 10%;
+  right: 15px;
+  bottom: 15px;
+  transition: background 0.5s;
+  z-index: 11;
+}
+
+.form-header {
+  font-size: large;
+  font-weight: bold;
+}
+
 /* Back to top button */
 .back-to-top {
   position: fixed;

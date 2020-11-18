@@ -3,6 +3,11 @@ package com.codecool.shop.controller;
 import com.codecool.shop.dao.CartDao;
 import com.codecool.shop.dao.implementation.CartDaoMem;
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.model.Cart;
+import com.codecool.shop.model.LineItem;
+import com.codecool.shop.model.Product;
+import com.google.gson.Gson;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import javax.servlet.ServletException;
@@ -27,6 +32,16 @@ public class CartController extends HttpServlet {
         //context.setVariable("addedProductsQuantity", cart.getAddedProductsQuantity());
 
         engine.process("cart.html", context, resp.getWriter());
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int itemId =  Integer.parseInt(req.getParameter("itemId"));
+        Cart cart = Cart.getInstance();
+
+        LineItem item = cart.getLineItemByLineItemId(itemId);
+
+        cart.removeLineItem(item);
     }
 
 

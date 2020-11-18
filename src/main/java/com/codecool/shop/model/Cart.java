@@ -8,9 +8,10 @@ public class Cart extends BaseModel{
 
 
     private List<LineItem> lineItems;
-    private float totalPrice = 0;
-    private static Cart instance;
 
+    private float totalPrice = 0;
+
+    private static Cart instance;
     public Cart(String name) {
         super(name);
         this.lineItems = new ArrayList<>();
@@ -22,6 +23,10 @@ public class Cart extends BaseModel{
 
     public List<LineItem> getLineItems() {
         return this.lineItems;
+    }
+
+    public float getTotalPrice() {
+        return totalPrice;
     }
 
     public static Cart getInstance() {
@@ -52,8 +57,12 @@ public class Cart extends BaseModel{
         lineItem.decreaseQuantity();
         totalPrice -= product.getDefaultPrice();
         if (lineItem.isClearable()) {
-            lineItems.remove(lineItem);
+            removeLineItem(lineItem);
         }
+    }
+
+    public void removeLineItem(LineItem lineItem) {
+        lineItems.remove(lineItem);
     }
 
 /*    public void changeQuantityInLineItem(LineItem lineItem, int quantity) {
@@ -72,6 +81,10 @@ public class Cart extends BaseModel{
 //optional?
     private LineItem getLineItemByProductId(int productId) {
         return lineItems.stream().filter(item -> item.getProductId() == productId).findFirst().orElse(null);
+    }
+
+    public LineItem getLineItemByLineItemId(int itemId) {
+        return lineItems.stream().filter(item -> item.getId() == itemId).findFirst().orElse(null);
     }
 
 

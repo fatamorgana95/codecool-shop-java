@@ -67,9 +67,9 @@ public class ProductController extends HttpServlet {
         Cart cart = Cart.getInstance();
         cart.addProduct(product);
 
-        CartDao orderDataStore = CartDaoMem.getInstance();
-        if (orderDataStore.find(cart.getId()) == null) {
-            orderDataStore.add(cart);
+        CartDao cartDataStore = CartDaoMem.getInstance();
+        if (cartDataStore.find(cart.getId()) == null) {
+            cartDataStore.add(cart);
         }
 
         Gson gson = new Gson();
