@@ -1,9 +1,11 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
+
 <head th:replace="header.html :: copy"></head>
 
 <body>
+
 
 <head th:replace="top_bar.html :: copy"></head>
 
@@ -26,20 +28,39 @@
             </select>
         </div>
 
+        <div class="container" data-aos="fade-up">
 
-        <div class="row">
+            <header class="section-header">
+                <h3>Dragons</h3>
+                <p>They are real.</p>
+            </header>
+            <div class="card" align="center">
+                <select id="category-scroll">
+                    <option>All Categories</option>
+                    <option th:each="cat : ${category}" th:value="${cat.name}" th:text="${cat.name}"/>
+                </select>
+                <select id="supplier-scroll">
+                    <option>All Suppliers</option>
+                    <option th:each="sup : ${supplier}" th:value="${sup.name}" th:text="${sup.name}"/>
+                </select>
+            </div>
 
-            <div class="col-md-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100" th:each="prod,iterStat : ${products}">
-                <div class="box">
-                    <div class="icon" style="background: #fceef3;"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
-                    <h4 class="title" th:text="${prod.name}">Product Name</h4>
-                    <img class="img" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/images/' + ${prod.image}" alt="" />
-                    <p class="description" th:text="${prod.description}">Product Description</p>
-                    <strong><p class="description" th:text="${prod.getPrice()}">100 USD</p></strong>
-                    <button id="add-to-cart-button" th:attr="data-id=${prod.getId()}" class="btn" >Add to cart</button>
+
+            <div class="row" align="center">
+                <div id="cardContainer" class="col-md-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100"
+                     th:each="prod,iterStat : ${products}">
+                    <div class="box">
+                        <div class="icon" style="background: #fceef3;"><i class="ion-ios-analytics-outline"
+                                                                          style="color: #ff689b;"></i></div>
+                        <h4 class="title" th:text="${prod.name}">Product Name</h4>
+                        <img class="img" src="http://placehold.it/400x250/000/fff"
+                             th:attr="src='/static/images/' + ${prod.image}" alt=""/>
+                        <p class="description" th:text="${prod.description}">Product Description</p>
+                        <strong><p class="description" th:text="${prod.getPrice()}">100 USD</p></strong>
+                        <a class="btn" href="#">Add to cart</a>
+                    </div>
                 </div>
             </div>
-        </div>
 
     </div>
 </section>
@@ -48,7 +69,6 @@
 <div th:replace="footer.html :: copy"></div>
 
 <div th:replace="vendorAndJs.html :: copy"></div>
-
 </body>
 
 </html>

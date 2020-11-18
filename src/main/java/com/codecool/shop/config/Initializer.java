@@ -39,10 +39,10 @@ public class Initializer implements ServletContextListener {
         Supplier shrek = new Supplier("Shrek", "Shrek is a 2001 American computer-animated comedy film loosely based on the 1990 fairy tale picture book of the same name by William Steig.");
         supplierDataStore.add(shrek);
 
-        Supplier susu = new Supplier("Süsü, a sárkány", "A Süsü, a sárkány 1977-től 1984-ig futott magyar televíziós bábfilmsorozat, amely a Magyar Televízióban készült 1976-tól 1984-ig.");
+        Supplier susu = new Supplier("Susu, a sarkany", "A Süsü, a sárkány 1977-től 1984-ig futott magyar televíziós bábfilmsorozat, amely a Magyar Televízióban készült 1976-tól 1984-ig.");
         supplierDataStore.add(susu);
 
-        Supplier magyarNepMesek = new Supplier("Magyar Népmesék", "A Magyar népmesék 1980-tól 2012-ig futott magyar televíziós rajzfilmsorozat, amelynek ötlete Mikulás Ferenc stúdióvezető fejében fogant meg.i");
+        Supplier magyarNepMesek = new Supplier("Magyar Nepmesek", "A Magyar népmesék 1980-tól 2012-ig futott magyar televíziós rajzfilmsorozat, amelynek ötlete Mikulás Ferenc stúdióvezető fejében fogant meg.i");
         supplierDataStore.add(magyarNepMesek);
 
 
