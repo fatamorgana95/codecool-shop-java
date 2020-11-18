@@ -35,13 +35,19 @@ public class CartController extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int itemId =  Integer.parseInt(req.getParameter("itemId"));
         Cart cart = Cart.getInstance();
 
         LineItem item = cart.getLineItemByLineItemId(itemId);
+        cart.changeQuantityInLineItem(item, 0);
 
-        cart.removeLineItem(item);
+
+        Gson gson = new Gson();
+        String totalPrice = gson.toJson(cart.getTotalPrice());
+
+        resp.getWriter().write(totalPrice);
+
     }
 
 

@@ -38,7 +38,7 @@
                     <text th:text="${item.getName()}">Item name</text>
                 </div>
                 <div class="col-md-1 m-1">
-                    <input type="number" class="form-control" min="0" th:value="${item.getQuantity()}" required>
+                    <input id="quantity-input" type="number" class="form-control" th:attr="data-id=${item.getId()}" min="1" th:value="${item.getQuantity()}" required>
                 </div>
                 <div class="col-md-1 m-1" align="center">
                     <button class="small-button" id="remove-button" th:attr="data-id=${item.getId()}"><i class="fa fa-trash"></i></button>
@@ -47,7 +47,7 @@
                     <text th:text="${item.getUnitPrice()}">Unit Price</text>
                 </div>
                 <div class="col-md-2 m-1" align="right">
-                    <text th:text="${item.getSubTotalPrice()}">Subtotal Price</text>
+                    <text id="subtotal" th:text="${item.getSubTotalPrice()}">Subtotal Price</text>
                 </div>
             </div>
             <div class="form-row">
@@ -55,7 +55,7 @@
                     <text>Total</text>
                 </div>
                 <div class="col-md-2 m-1 form-header" align="right">
-                    <text th:text="${cart.getTotalPrice()}">Quantity</text>
+                    <text id="total" th:text="${cart.getTotalPrice()}">Quantity</text>
                 </div>
             </div>
             <br><br>
@@ -69,6 +69,7 @@
 
 <div th:replace="vendorAndJs.html :: copy"></div>
 <script src="static/js/cart.js"></script>
+
 
 </body>
 

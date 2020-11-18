@@ -43,6 +43,7 @@ public class Cart extends BaseModel{
         if (lineItem == null) {
             String name = product.getName();
             LineItem newLineItem = new LineItem(product, name);
+            newLineItem.setId(lineItems.size() + 1);
             lineItems.add(newLineItem);
         } else {
             lineItem.increaseQuantity();
@@ -65,18 +66,19 @@ public class Cart extends BaseModel{
         lineItems.remove(lineItem);
     }
 
-/*    public void changeQuantityInLineItem(LineItem lineItem, int quantity) {
+    public void changeQuantityInLineItem(LineItem lineItem, int quantity) {
         int prevQuantity = lineItem.getQuantity();
         lineItem.setQuantity(quantity);
         if (lineItem.isClearable()) {
-            lineItems.remove(lineItem);
+            removeLineItem(lineItem);
+            totalPrice -= prevQuantity * lineItem.getUnitPrice();
         } else {
             int actualQuantity = lineItem.getQuantity();
             int difference = actualQuantity-prevQuantity;
-            totalPrice += difference * lineItem.getDefaultPrice(); //downcast
+            totalPrice += difference * lineItem.getUnitPrice();
         }
 
-    }*/
+    }
 
 //optional?
     private LineItem getLineItemByProductId(int productId) {

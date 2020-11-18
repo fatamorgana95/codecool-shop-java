@@ -23,21 +23,37 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(urlPatterns = {"/categories/"})
-public class CategoryController extends HttpServlet {
+@WebServlet(urlPatterns = {"/filter/"})
+public class FilterController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String category = req.getParameter("category");
+        String supplier = req.getParameter("supplier");
+
         List<Product> filteredProducts = new ArrayList<>();
         ProductDao productDataStore = ProductDaoMem.getInstance();
 
-        if (category.equals("All Categories")) {
+        if (category.equals("All Categories") && supplier.equals("All Suppliers")) {
             filteredProducts = productDataStore.getAll();
+        }
+        else if (!category.equals("All Categories") && supplier.equals("All Suppliers")) {
+            for (Product product: productDataStore.getAll()) {
+                if (product.getProductCategory().getName().equals(category)) {
+                    filteredProducts.add(product);
+                }
+            }
+        }
+        else if (category.equals("All Categories") && !supplier.equals("All Suppliers")) {
+            for (Product product : productDataStore.getAll()) {
+                if (product.getSupplier().getName().equals(supplier)) {
+                    filteredProducts.add(product);
+                }
+            }
         }
         else {
             for (Product product : productDataStore.getAll()) {
-                if (product.getProductCategory().getName().equals(category)) {
+                if (product.getProductCategory().getName().equals(category) && product.getSupplier().getName().equals(supplier)) {
                     filteredProducts.add(product);
                 }
             }
@@ -50,4 +66,5 @@ public class CategoryController extends HttpServlet {
     }
 
 }
+
 

@@ -1,46 +1,59 @@
+
 function init() {
     addEventListeners();
+    let addToCartButtons = document.querySelectorAll("#add-to-cart-button");
+    addToCartButtons.forEach( (btn) =>{
+        btn.addEventListener("click", function(){
+            let productId = this.dataset.id;
+            let data = {"productId": productId};
+            addToCart("/", data, refreshAddedProductsQuantity);
+        })});
+}
 
-    function addEventListeners () {
-        let categories = document.getElementById("category-scroll");
-        categories.addEventListener("change", function () {filterByCategory(this.value,suppliers.va);})
+function addToCart(url, data, callback) {
+    $.post("/", data, function(response) {callback(JSON.parse(response))});
+}
 
-        let suppliers = document.getElementById("supplier-scroll");
-        suppliers.addEventListener("change", function () {filterBySupplier(this.value);})
-    }
+function refreshAddedProductsQuantity(response){
+    // need filter(?)
+    let quantityElement = document.querySelector("#added-products-quantity");
+    quantityElement.innerText = response;
+}
 
-    function filterBySupplier(supplier) {
-        fetch(`/suppliers/?supplier=${supplier}`)
-            .then(response => response.json())
-            .then((Response) => showFilteredProducts(Response))
-    }
 
-    function filterByCategory(category) {
-        fetch(`/categories/?category=${category}`)
-            .then(response => response.json())
-            .then((Response) => showFilteredProducts(Response))
-    }
+function addEventListeners () {
+    let categories = document.getElementById("category-scroll");
+    categories.addEventListener("change", function () {filterBy(this.value, suppliers.value);})
 
-    function showFilteredProducts(products) {
-        let container = document.querySelector(".row");
-        let card = '';
-        for (let prod of products) {
-            card +=
-                `<div id="cardContainer" class="col-md-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100">
+    let suppliers = document.getElementById("supplier-scroll");
+    suppliers.addEventListener("change", function () {filterBy(categories.value, this.value);})
+}
+
+function filterBy(category, supplier) {
+    fetch(`/filter/?category=${category}&supplier=${supplier}`)
+        .then(response => response.json())
+        .then((Response) => showFilteredProducts(Response))
+}
+
+
+function showFilteredProducts(products) {
+    let container = document.querySelector(".row");
+    let card = '';
+    for (let prod of products) {
+        card +=
+            `<div id="cardContainer" class="col-md-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100">
                     <div class="box">
                         <div class="icon" style="background: #fceef3;"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
                         <h4 class="title" >${prod.name}</h4>
                         <img class="img" src="/static/images/${prod.image}" alt="" />
                         <p class="description" >${prod.description}</p>
                         <strong><p class="description">${prod.defaultPrice} ${prod.defaultCurrency}</p></strong>
-                        <a class="btn" href="#">Add to cart</a>
+                        <button class="btn" id="add-to-cart-button" data-id="${prod.id}">Add to cart</button>
                     </div>
                     </div>`
-        }
-        container.innerHTML = card;
     }
-
+    container.innerHTML = card;
+    init();
 }
 
-
-init();
+window.onload = init;

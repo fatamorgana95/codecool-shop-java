@@ -1,21 +1,60 @@
-let removeButton = document.querySelector("#remove-button");
+let removeButtons = document.querySelectorAll("#remove-button");
 
+let quantityInputs = document.querySelectorAll("#quantity-input");
+
+
+function init2() {
+    quantityInputs.forEach((inputField) => {
+        inputField.addEventListener("change", function(){
+            let itemId = this.dataset.id;
+            let quantity = this.value;
+            let data = {"itemId": itemId, "quantity": quantity};
+            fetch2( data,quantity, changeQuantity, this);
+        });})
+}
+
+
+function fetch2(data, quantity, callback, quantityInput) {
+    $.post("/cart/change", data, function(response) {callback(quantity, quantityInput, response)});
+}
+
+
+function changeQuantity(quantity, quantityInput, response){
+    let row = quantityInput.closest(".form-row");
+    let parts = response.split(",");
+    let subtotalPrice = parts[0];
+    let totalPrice = parts[1];
+    if (quantity <= 1){
+        quantityInput.value = 1;
+    }
+    row.querySelector("#subtotal").innerHTML = subtotalPrice;
+    document.querySelector("#total").innerHTML = totalPrice;
+}
 
 function init() {
-    removeButton.addEventListener("click", function(){
+    document.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            event.preventDefault();
+        }
+    });
+    removeButtons.forEach((btn) => {
+        btn.addEventListener("click", function(){
+            event.preventDefault();
             let itemId = this.dataset.id;
             let data = {"itemId": itemId};
-            addToCart("/cart", data, deleteItem(), this);
-        });
+            fetch("/cart", data, deleteItem, this);
+        });})
+    init2();
 }
 
-function addToCart(url, data, callback, deleteButton) {
-    $.delete(url, data, function() {callback(deleteButton)});
+function fetch(url, data, callback, deleteButton) {
+    $.post("/cart", data, function(response) {callback(deleteButton, response)});
 }
 
-function deleteItem(deleteButton){
+function deleteItem(deleteButton, response){
     let row = deleteButton.closest(".form-row");
     row.remove();
+    document.querySelector("#total").innerText = response;
 }
 
 window.onload = init;
