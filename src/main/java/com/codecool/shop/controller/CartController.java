@@ -24,6 +24,7 @@ public class CartController extends HttpServlet {
 
         //indexoutofbound
         context.setVariable("cart", ((CartDaoMem) cartDataStore).findLast()); //downcast
+        //context.setVariable("addedProductsQuantity", cart.getAddedProductsQuantity());
 
         engine.process("cart.html", context, resp.getWriter());
     }

@@ -71,7 +71,7 @@ public class Cart extends BaseModel{
 
 //optional?
     private LineItem getLineItemByProductId(int productId) {
-        return lineItems.stream().filter(item -> item.id == productId).findFirst().orElse(null);
+        return lineItems.stream().filter(item -> item.getProductId() == productId).findFirst().orElse(null);
     }
 
 

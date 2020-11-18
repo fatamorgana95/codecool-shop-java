@@ -6,11 +6,14 @@ public class LineItem extends BaseModel{
     private int quantity;
     private float subTotalPrice = 0;
 
+    private final int productId;
+
     private final Product product;
 
     public LineItem(Product product, String name) {
         super(name);
         this.product = product;
+        this.productId = product.id;
         this.quantity = 1;
         this.unitPrice = product.getDefaultPrice();
         this.subTotalPrice = unitPrice;
@@ -18,6 +21,10 @@ public class LineItem extends BaseModel{
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public int getProductId() {
+        return productId;
     }
 
     public void setQuantity(int quantity) {
