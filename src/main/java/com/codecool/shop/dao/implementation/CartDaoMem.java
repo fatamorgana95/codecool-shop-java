@@ -24,9 +24,9 @@ public class CartDaoMem implements CartDao {
     }
 
     @Override
-    public void add(Cart order) {
-        order.setId(data.size() + 1);
-        data.add(order);
+    public void add(Cart cart) {
+        cart.setId(data.size() + 1);
+        data.add(cart);
     }
 
     @Override
