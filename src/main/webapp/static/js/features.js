@@ -3,20 +3,14 @@ function init() {
 
     function addEventListeners () {
         let categories = document.getElementById("category-scroll");
-        categories.addEventListener("change", function () {filterByCategory(this.value);})
+        categories.addEventListener("change", function () {filterBy(this.value, suppliers.value);})
 
         let suppliers = document.getElementById("supplier-scroll");
-        suppliers.addEventListener("change", function () {filterBySupplier(this.value);})
+        suppliers.addEventListener("change", function () {filterBy(categories.value, this.value);})
     }
 
-    function filterBySupplier(supplier) {
-        fetch(`/suppliers/?supplier=${supplier}`)
-            .then(response => response.json())
-            .then((Response) => showFilteredProducts(Response))
-    }
-
-    function filterByCategory(category) {
-        fetch(`/categories/?category=${category}`)
+    function filterBy(category, supplier) {
+        fetch(`/filter/?category=${category}&supplier=${supplier}`)
             .then(response => response.json())
             .then((Response) => showFilteredProducts(Response))
     }
@@ -39,7 +33,6 @@ function init() {
         }
         container.innerHTML = card;
     }
-
 }
 
 
