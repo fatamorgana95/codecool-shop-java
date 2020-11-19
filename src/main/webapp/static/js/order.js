@@ -1,4 +1,5 @@
 let payButton = document.querySelector("#pay");
+let backButton = document.querySelector("#back");
 let firstName = document.querySelector("#first-name");
 let lastName = document.querySelector("#last-name");
 let eMail = document.querySelector("#email");
@@ -12,10 +13,13 @@ let shippingCity = document.querySelector("#shipping-city");
 let shippingZipCode = document.querySelector("#shipping-zipcode");
 let shippingAddress = document.querySelector("#shipping-address");
 let formsList = [firstName, lastName, eMail, phoneNumber, country, city, zipCode, address, shippingCountry, shippingCity, shippingZipCode, shippingAddress];
-let forms = document.getElementsByClassName('needs-validation');
+let alertBar = document.getElementById("snackbar");
+
 
 function init() {
-
+    backButton.addEventListener("click", function () {
+        window.location.href = "/cart";
+    })
     payButton.addEventListener("click", function() {
         validation();
         if (validationIsCorrect()) {
@@ -31,16 +35,20 @@ function init() {
                 "shippingCity": shippingCity.value,
                 "shippingZipCode": shippingZipCode.value,
                 "shippingAddress": shippingAddress.value};
-            addToCart(data);
+            addToOrder(data);
+            window.location.href = "/cart";
         }
         else {
-            alert("here");
+            alertBar.className = "show";
+            setTimeout(function(){ alertBar.className = alertBar.className.replace("show", ""); }, 3000);
         }
 
     });
 }
 
-function addToCart(data) {
+
+
+function addToOrder(data) {
     $.post("/order", data);
 }
 
@@ -113,7 +121,7 @@ function zipCodeValidation(form) {
 }
 
 function addressValidation(form) {
-        if (form.value !== null) {
+        if (form.value !== null && form.value.length > 2) {
             form.classList.add("is-valid");
         }
         else {

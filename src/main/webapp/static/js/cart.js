@@ -1,5 +1,6 @@
 let removeButtons = document.querySelectorAll("#remove-button");
-
+let checkOutButton = document.querySelector("#check-out");
+let homeButton = document.querySelector("#home");
 let quantityInputs = document.querySelectorAll("#quantity-input");
 
 
@@ -32,6 +33,12 @@ function changeQuantity(quantity, quantityInput, response){
 }
 
 function init() {
+    checkOutButton.addEventListener('click', function () {
+        window.location.href = "/order";
+    })
+    homeButton.addEventListener('click', function () {
+        window.location.href = "/";
+    })
     document.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             event.preventDefault();
