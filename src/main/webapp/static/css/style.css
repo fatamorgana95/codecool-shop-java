@@ -57,6 +57,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
+#frown-icon {
+  color: #0c5460;
+  text-align: center; !important;
+}
+
 /* Back to top button */
 .back-to-top {
   position: fixed;

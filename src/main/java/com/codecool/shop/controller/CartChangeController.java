@@ -1,8 +1,11 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.model.Cart;
 import com.codecool.shop.model.LineItem;
 import com.google.gson.Gson;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,12 +30,16 @@ public class CartChangeController extends HttpServlet {
         LineItem item = cart.getLineItemByLineItemId(itemId);
         cart.changeQuantityInLineItem(item, quantity);
 
-        Gson gson = new Gson();
+//        if (cart.getLineItems().size() == 0){
+//            TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
+//            WebContext context = new WebContext(req, resp, req.getServletContext());
+//            engine.process("empty_cart.html", context, resp.getWriter());
+//        }
+//        else {
 
-        String subtotalPrice = String.format("%s %s",item.getSubTotalPrice(), item.getDefaultCurrency());
-        String totalPrice = String.format("%s %s",cart.getTotalPrice(), item.getDefaultCurrency());
-
-        resp.getWriter().write(subtotalPrice + "," + totalPrice);
+            String subtotalPrice = String.format("%s %s", item.getSubTotalPrice(), item.getDefaultCurrency());
+            String totalPrice = String.format("%s %s", cart.getTotalPrice(), item.getDefaultCurrency());
+            resp.getWriter().write(subtotalPrice + "," + totalPrice);
     }
 
 
