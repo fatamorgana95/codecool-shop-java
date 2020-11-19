@@ -37,14 +37,15 @@
                 <div id="cardContainer" class="col-md-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100"
                      th:each="prod,iterStat : ${products}">
                     <div class="box">
-                        <div class="icon" style="background: #fceef3;"><i class="ion-ios-analytics-outline"
-                                                                          style="color: #ff689b;"></i></div>
-                        <h4 class="title" th:text="${prod.name}">Product Name</h4>
                         <img class="img" src="http://placehold.it/400x250/000/fff"
                              th:attr="src='/static/images/' + ${prod.image}" alt=""/>
+                        <br>
+                        <h4 class="title" th:text="${prod.name}">Product Name</h4>
                         <p class="description" th:text="${prod.description}">Product Description</p>
+                        <br>
                         <strong><p class="description" th:text="${prod.getPrice()}">100 USD</p></strong>
-                        <button id="add-to-cart-button" th:attr="data-id=${prod.getId()}" class="btn" >Add to cart</button>
+                        <br>
+                        <button id="add-to-cart-button" class="small-button" style="width: 100px;" th:attr="data-id=${prod.getId()}"  >Add to cart</button>
                     </div>
                 </div>
             </div>
@@ -57,7 +58,6 @@
 
 <div th:replace="vendorAndJs.html :: copy"></div>
 <script src="static/js/main.js"></script>
-<script src="static/js/addToCart.js"></script>
 <script src="static/js/features.js"></script>
 
 </body>

@@ -66,13 +66,14 @@ public class Initializer implements ServletContextListener {
 
         //setting up products and printing it
         productDataStore.add(new Product("7 Headed Dragon", 1500, "HUF", "They say seven is better than one! Grab this excellent dragon if you know how to handle more than one.", green, magyarNepMesek, "sevenheadeddragon.png"));
-        productDataStore.add(new Product("Susu", 325, "HUF", "Hungarian one-headed dragon, for an excellent price. It is kind and would probably never bite you.", green, susu, "susu.png"));
+        productDataStore.add(new Product("Susu", 3250, "HUF", "Hungarian one-headed dragon, for an excellent price. It is kind and would probably never bite you.", green, susu, "susu.png"));
         productDataStore.add(new Product("Toothless", 2323, "HUF", "He is nice, friendly but most importantly dangerous! If you want to train your dragon, Toothles is the best partner for you.", black, howToTrainYourDragon, "toothless.jpg"));
         productDataStore.add(new Product("Mushu", 1, "HUF", "This chinese dragon, may talk a lot but he is kind and friendly. It certainly helps you with fighting the enemy.", red, mulan, "mushu.png"));
         productDataStore.add(new Product("Drogon", 15777, "HUF", "It is one of the most fearful dragon out there. I double dare you to say 'DRACARYS' close to it.", brown, gameOfThrones, "drogon.png"));
-        productDataStore.add(new Product("Hungarian Horntail", 131234, "HUF", "The Hungarian Horntail is a species of dragon native to Hungary and is considered to be one of the most dangerous dragon breeds, if not the most dangerous.", brown, harryPotter, "hungarianHorntail.jpg"));
-        productDataStore.add(new Product("Dragon (Shrek)", 8888, "HUF", "The most dangerous female dragon out there. She might bite or kiss you depends on the situation!", red, shrek, "dragonShrek.png"));
-        productDataStore.add(new Product("Light Furry", 6668, "HUF", "", white, howToTrainYourDragon, "lightFurry.jpg"));
-
+        productDataStore.add(new Product("Hungarian Horntail", 131234, "HUF", "Native to Hungary and is considered to be one of the most dangerous dragon breeds, if not the most dangerous.", brown, harryPotter, "hungarianHorntail.jpg"));
+        productDataStore.add(new Product("Dragon (Shrek)", 88888, "HUF", "The most dangerous female dragon out there. She might bite or kiss you depends on the situation!", red, shrek, "dragonShrek.png"));
+        productDataStore.add(new Product("Light Furry", 6668, "HUF", "Can walk through the middle of a village without any humans or most dragons sensing her around. ", white, howToTrainYourDragon, "lightFurry.jpg"));
+        productDataStore.add(new Product("Dronkey (Shrek)", 44444, "HUF", "Childish energy and the flying and fire breathing abilities of a dragon, there is never a dull moment with the dronkeys!", brown, shrek, "dronkey.png"));
+        productDataStore.add(new Product("Norwegian Ridgeback", 10000, "HUF", "A species of dragon, its typical habitat is the Northern mountains. It is said to physically resemble a Hungarian Horntail.", green, harryPotter, "norwegianRidgeback.png"));
     }
 }

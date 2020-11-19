@@ -43,12 +43,15 @@ function showFilteredProducts(products) {
         card +=
             `<div id="cardContainer" class="col-md-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100">
                     <div class="box">
-                        <div class="icon" style="background: #fceef3;"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
-                        <h4 class="title" >${prod.name}</h4>
+                        
                         <img class="img" src="/static/images/${prod.image}" alt="" />
+                        <br>
+                        <h4 class="title" >${prod.name}</h4>
                         <p class="description" >${prod.description}</p>
+                        <br>
                         <strong><p class="description">${prod.defaultPrice} ${prod.defaultCurrency}</p></strong>
-                        <button class="btn" id="add-to-cart-button" data-id="${prod.id}">Add to cart</button>
+                        <br>
+                        <button class="small-button" style="width:100px;" id="add-to-cart-button" data-id="${prod.id}">Add to cart</button>
                     </div>
                     </div>`
     }
