@@ -72,5 +72,7 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Drogon", 15777, "HUF", "It is one of the most fearful dragon out there. I double dare you to say 'DRACARYS' close to it.", brown, gameOfThrones, "drogon.png"));
         productDataStore.add(new Product("Hungarian Horntail", 131234, "HUF", "The Hungarian Horntail is a species of dragon native to Hungary and is considered to be one of the most dangerous dragon breeds, if not the most dangerous.", brown, harryPotter, "hungarianHorntail.jpg"));
         productDataStore.add(new Product("Dragon (Shrek)", 8888, "HUF", "The most dangerous female dragon out there. She might bite or kiss you depends on the situation!", red, shrek, "dragonShrek.png"));
+        productDataStore.add(new Product("Light Furry", 6668, "HUF", "", white, howToTrainYourDragon, "lightFurry.jpg"));
+
     }
 }
