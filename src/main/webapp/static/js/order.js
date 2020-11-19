@@ -40,7 +40,7 @@ function init() {
                 "shippingZipCode": shippingZipCode.value,
                 "shippingAddress": shippingAddress.value};
             addToOrder(data);
-            window.location.href = "/cart";
+            window.location.href = "/payment";
         }
         else {
             alertBar.className = "show";
