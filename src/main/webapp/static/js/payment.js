@@ -15,7 +15,9 @@ let buttons;
 
 
 
+
 function init() {
+
     creditCard.addEventListener("change", function() {showPaymentInputs(this);});
     payPal.addEventListener("change", function() {
         cardHolderInput = null;
@@ -65,7 +67,8 @@ function showPaymentInputs(paymentType) {
         let formList = (cardHolderInput !== null)? creditCardList : payPalCardList;
         validation(formList);
         if (validationIsCorrect(formList)) {
-            window.location.href = "/cart";
+            let isCompleted = (Math.floor(Math.random() * 10) < 2)? "error" : "completed";
+            window.location.href = "/transaction?transaction=" + isCompleted;
         }
         else {
             alert2Bar = document.getElementById("snackbar");
