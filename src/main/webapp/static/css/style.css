@@ -63,8 +63,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #category-scroll {
-  background-color: white;
+  background-color: #f5f8fd;
   color: #04041d;
+  border-radius: 10%;
+  padding: 2px;
+  margin: 10px;
+}
+
+#supplier-scroll {
+  background-color: #f5f8fd;
+  color: #04041d;
+  border-radius: 10%;
+  padding: 2px;
+  margin: 10px;
 }
 
 /* Back to top button */
@@ -433,7 +444,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .mobile-nav-active .mobile-nav-toggle i {
-  color: #fff;
+  color: #ffffff;
 }
 
 /*--------------------------------------------------------------
