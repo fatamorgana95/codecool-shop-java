@@ -23,7 +23,7 @@
                 <div class="col-md-3 m-1 form-header">
                     <text>Product</text>
                 </div>
-                <div class="col-md-2 m-1 form-header">
+                <div class="col-md-3 m-1 form-header">
                     <text>Quantity</text>
                 </div>
                 <div class="col-md-2 m-1 form-header">
@@ -43,11 +43,11 @@
                 <div class="col-md-1 m-1" align="center">
                     <button class="small-button" id="remove-button" th:attr="data-id=${item.getId()}"><i class="fa fa-trash"></i></button>
                 </div>
-                <div class="col-md-1 m-1" align="right">
-                    <text th:text="${item.getUnitPrice()}">Unit Price</text>
+                <div class="col-md-2 m-1" align="right">
+                    <text th:text="${item.getUnitPrice() + ' ' + item.getDefaultCurrency()}">Unit Price</text>
                 </div>
                 <div class="col-md-2 m-1" align="right">
-                    <text id="subtotal" th:text="${item.getSubTotalPrice()}">Subtotal Price</text>
+                    <text id="subtotal" th:text="${item.getSubTotalPrice() + ' ' + item.getDefaultCurrency()}">Subtotal Price</text>
                 </div>
             </div>
             <div class="form-row">
@@ -55,7 +55,7 @@
                     <text>Total</text>
                 </div>
                 <div class="col-md-2 m-1 form-header" align="right">
-                    <text id="total" th:text="${cart.getTotalPrice()}">Quantity</text>
+                    <text id="total" th:text="${cart.getTotalPrice()+ ' ' + cart.getDefaultCurrency()}">Quantity</text>
                 </div>
             </div>
             <br><br>

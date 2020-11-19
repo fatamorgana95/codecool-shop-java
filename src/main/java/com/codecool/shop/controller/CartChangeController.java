@@ -29,8 +29,8 @@ public class CartChangeController extends HttpServlet {
 
         Gson gson = new Gson();
 
-        String subtotalPrice = gson.toJson(item.getSubTotalPrice());
-        String totalPrice = gson.toJson(cart.getTotalPrice());
+        String subtotalPrice = String.format("%s %s",item.getSubTotalPrice(), item.getDefaultCurrency());
+        String totalPrice = String.format("%s %s",cart.getTotalPrice(), item.getDefaultCurrency());
 
         resp.getWriter().write(subtotalPrice + "," + totalPrice);
     }

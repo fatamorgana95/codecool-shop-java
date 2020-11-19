@@ -1,6 +1,7 @@
 package com.codecool.shop.model;
 
 import java.util.Currency;
+import java.util.Locale;
 
 public class Product extends BaseModel {
 
@@ -9,11 +10,13 @@ public class Product extends BaseModel {
     transient private ProductCategory productCategory;
     private Supplier supplier;
     private String image;
+//    private final String CURRENCY;
 
 
     public Product(String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier, String image) {
         super(name, description);
         this.setPrice(defaultPrice, currencyString);
+        this.setDefaultCurrency(Currency.getInstance(currencyString));
         this.setSupplier(supplier);
         this.setProductCategory(productCategory);
         this.setImage(image);
@@ -85,4 +88,8 @@ public class Product extends BaseModel {
                 this.productCategory.getName(),
                 this.supplier.getName());
     }
+
+/*    public String getCURRENCY() {
+        return CURRENCY;
+    }*/
 }

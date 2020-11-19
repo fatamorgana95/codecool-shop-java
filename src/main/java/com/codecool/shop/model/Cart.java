@@ -1,14 +1,14 @@
 package com.codecool.shop.model;
 
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 
 public class Cart extends BaseModel{
 
 
-
+    private Currency defaultCurrency;
     private List<LineItem> lineItems;
-
     private float totalPrice = 0;
 
     private static Cart instance;
@@ -38,6 +38,10 @@ public class Cart extends BaseModel{
     }
 
 
+    public Currency getDefaultCurrency() {
+        return defaultCurrency;
+    }
+
     public void addProduct(Product product) {
         LineItem lineItem = getLineItemByProductId(product.getId());
         if (lineItem == null) {
@@ -45,6 +49,7 @@ public class Cart extends BaseModel{
             LineItem newLineItem = new LineItem(product, name);
             newLineItem.setId(lineItems.size() + 1);
             lineItems.add(newLineItem);
+            defaultCurrency = newLineItem.getDefaultCurrency();
         } else {
             lineItem.increaseQuantity();
         }

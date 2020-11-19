@@ -27,8 +27,8 @@ function changeQuantity(quantity, quantityInput, response){
     if (quantity <= 1){
         quantityInput.value = 1;
     }
-    row.querySelector("#subtotal").innerHTML = subtotalPrice;
-    document.querySelector("#total").innerHTML = totalPrice;
+    row.querySelector("#subtotal").innerText = subtotalPrice;
+    document.querySelector("#total").innerText = totalPrice;
 }
 
 function init() {

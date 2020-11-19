@@ -43,8 +43,7 @@ public class CartController extends HttpServlet {
         cart.changeQuantityInLineItem(item, 0);
 
 
-        Gson gson = new Gson();
-        String totalPrice = gson.toJson(cart.getTotalPrice());
+        String totalPrice = String.format("%s %s",cart.getTotalPrice(), cart.getDefaultCurrency());
 
         resp.getWriter().write(totalPrice);
 
