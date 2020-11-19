@@ -29,7 +29,7 @@ function createButtons(){
     buttons.innerHTML = `                <div class="form-row">
                     <div class="col-md-7,5 m-1 form-header">
                         <div class="modal-footer">
-                            <button type="button" style="width:100px;" class="small-button" id="cancel" data-dismiss="back">Back</button>
+                            <button type="button" style="width:100px;" class="small-button" id="back" data-dismiss="back">Cancel</button>
                             <button type="button" style="width:100px;" class="small-button" id="confirmation">Pay</button>
                             <div id="snackbar">Invalid inputs, please try again.</div>
                         </div>

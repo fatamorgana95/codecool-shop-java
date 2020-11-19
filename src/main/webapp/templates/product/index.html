@@ -19,19 +19,20 @@
 
             <header class="section-header">
                 <h3>Dragons</h3>
-                <p>They are real.</p>
             </header>
+
             <div class="card" align="center">
                 <select id="category-scroll">
                     <option>All Categories</option>
                     <option th:each="cat : ${category}" th:value="${cat.name}" th:text="${cat.name}"/>
+
                 </select>
                 <select id="supplier-scroll">
                     <option>All Suppliers</option>
                     <option th:each="sup : ${supplier}" th:value="${sup.name}" th:text="${sup.name}"/>
                 </select>
             </div>
-
+            <br><br>
 
             <div class="row" align="center">
                 <div id="cardContainer" class="col-md-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100"
