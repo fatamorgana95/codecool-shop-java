@@ -14,11 +14,15 @@ let shippingZipCode = document.querySelector("#shipping-zipcode");
 let shippingAddress = document.querySelector("#shipping-address");
 let formsList = [firstName, lastName, eMail, phoneNumber, country, city, zipCode, address, shippingCountry, shippingCity, shippingZipCode, shippingAddress];
 let alertBar = document.getElementById("snackbar");
+let checkBox = document.getElementById("billing-to-ship");
 
 
 function init() {
     backButton.addEventListener("click", function () {
         window.location.href = "/cart";
+    })
+    checkBox.addEventListener("change", function () {
+      fillShippingAddress();
     })
     payButton.addEventListener("click", function() {
         validation();
@@ -46,7 +50,20 @@ function init() {
     });
 }
 
+function fillShippingAddress() {
+    if (checkBox.checked === true){
+        shippingCity.value = city.value
+        shippingCountry.value = country.value;
+        shippingZipCode.value = zipCode.value;
+        shippingAddress.value = address.value;
+    } else {
+        shippingCity.value = null;
+        shippingCountry.value = null;
+        shippingZipCode.value = null;
+        shippingAddress.value = null;
+    }
 
+}
 
 function addToOrder(data) {
     $.post("/order", data);
