@@ -1,38 +1,125 @@
 let payButton = document.querySelector("#pay");
-let firstName = document.querySelector("#first-name").value;
-let lastName = document.querySelector("#last-name").value;
-let eMail = document.querySelector("#email").value;
-let phoneNumber = document.querySelector("#phone-number").value;
-let country = document.querySelector("#billing-country").value;
-let city = document.querySelector("#billing-city").value;
-let zipCode = document.querySelector("#billing-zipcode").value;
-let address = document.querySelector("#billing-address").value;
-let shippingCountry = document.querySelector("#shipping-country").value;
-let shippingCity = document.querySelector("#shipping-city").value;
-let shippingZipCode = document.querySelector("#shipping-zipcodey").value;
-let shippingAddress = document.querySelector("#shipping-address").value;
+let firstName = document.querySelector("#first-name");
+let lastName = document.querySelector("#last-name");
+let eMail = document.querySelector("#email");
+let phoneNumber = document.querySelector("#phone-number");
+let country = document.querySelector("#billing-country");
+let city = document.querySelector("#billing-city");
+let zipCode = document.querySelector("#billing-zipcode");
+let address = document.querySelector("#billing-address");
+let shippingCountry = document.querySelector("#shipping-country");
+let shippingCity = document.querySelector("#shipping-city");
+let shippingZipCode = document.querySelector("#shipping-zipcode");
+let shippingAddress = document.querySelector("#shipping-address");
+let formsList = [firstName, lastName, eMail, phoneNumber, country, city, zipCode, address, shippingCountry, shippingCity, shippingZipCode, shippingAddress];
+let forms = document.getElementsByClassName('needs-validation');
 
 function init() {
-    payButton.addEventListener("click", function(){
-        let data = {"firstName": firstName,
-                    "lastName" : lastName,
-                    "eMail": eMail,
-                    "phoneNumber": phoneNumber,
-                    "country": country,
-                    "city": city,
-                    "zipCode": zipCode,
-                    "address": address,
-                    "shippingCountry": shippingCountry,
-                    "shippingCity": shippingCity,
-                    "shippingZipCode": shippingZipCode,
-                    "shippingAddress": shippingAddress};
-        addToCart(data);
+
+    payButton.addEventListener("click", function() {
+        validation();
+        if (validationIsCorrect()) {
+            let data = {"firstName": firstName.value,
+                "lastName" : lastName.value,
+                "eMail": eMail.value,
+                "phoneNumber": phoneNumber.value,
+                "country": country.value,
+                "city": city.value,
+                "zipCode": zipCode.value,
+                "address": address.value,
+                "shippingCountry": shippingCountry.value,
+                "shippingCity": shippingCity.value,
+                "shippingZipCode": shippingZipCode.value,
+                "shippingAddress": shippingAddress.value};
+            addToCart(data);
+        }
+        else {
+            alert("here");
+        }
+
     });
 }
 
 function addToCart(data) {
     $.post("/order", data);
 }
+
+function validationIsCorrect() {
+    let trueCounter = 0;
+
+    for (let i=0; i < formsList.length; i++) {
+        if (formsList[i].classList.contains("is-valid")) {
+            trueCounter += 1;
+        }
+    }
+    return trueCounter === formsList.length;
+}
+
+function validation() {
+    for (let i=0; i < formsList.length; i++) {
+        formsList[i].classList.remove("is-invalid");
+        formsList[i].classList.remove("is-valid");
+        if (formsList[i] === firstName || formsList[i] === lastName || formsList[i] === country || formsList[i] === city || formsList[i] === shippingCity || formsList[i] === shippingCountry) {
+            textValidation(formsList[i]);
+        }
+        else if (formsList[i] === eMail) {
+            emailValidation(formsList[i]);
+        }
+        else if (formsList[i] === phoneNumber) {
+            phoneNumberValidation(formsList[i]);
+        }
+        else if (formsList[i] === zipCode || formsList[i] === shippingZipCode) {
+            zipCodeValidation(formsList[i]);
+        }
+        else {
+            addressValidation(formsList[i]);
+        }
+    }
+}
+
+function textValidation(form) {
+    if (form.value !== null && /^[a-zA-Z]+$/.test(form.value)) {
+        form.classList.add("is-valid");
+    }
+    else {
+        form.classList.add("is-invalid")
+    }
+}
+
+function phoneNumberValidation(form) {
+    if (form.value !== null && form.value.match(/^\+?([0-9]{2})\)?[-. ]?([0-9]{2})[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/)) {
+        form.classList.add("is-valid");
+    }
+    else {
+        form.classList.add("is-invalid");
+    }
+}
+
+function emailValidation(form) {
+    if (form.value !== null && /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(form.value)) {
+        form.classList.add("is-valid");
+    }
+    else {
+        form.classList.add("is-invalid");
+    }
+}
+
+function zipCodeValidation(form) {
+    if (form.value !== null && form.value.match(/^([0-9]{4})$/)) {
+        form.classList.add("is-valid");
+    } else {
+        form.classList.add("is-invalid");
+    }
+}
+
+function addressValidation(form) {
+        if (form.value !== null) {
+            form.classList.add("is-valid");
+        }
+        else {
+            form.classList.add("is-invalid");
+        }
+    }
 
 
 window.onload = init;
