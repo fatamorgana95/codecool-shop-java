@@ -27,11 +27,21 @@ public class CartController extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
-        //indexoutofbound
-        context.setVariable("cart", ((CartDaoMem) cartDataStore).findLast()); //downcast
-        //context.setVariable("addedProductsQuantity", cart.getAddedProductsQuantity());
+        try {
+            Cart lastCart = ((CartDaoMem) cartDataStore).findLast();
+            if (lastCart.getLineItems().size() == 0){
+                engine.process("empty_cart.html", context, resp.getWriter());
+            }
+            else {
+                context.setVariable("cart", lastCart);
+                engine.process("cart.html", context, resp.getWriter());
+            }
+        }
+        catch (IndexOutOfBoundsException e) {
+            engine.process("empty_cart.html", context, resp.getWriter());
+        }
 
-        engine.process("cart.html", context, resp.getWriter());
+
     }
 
     @Override
@@ -43,8 +53,7 @@ public class CartController extends HttpServlet {
         cart.changeQuantityInLineItem(item, 0);
 
 
-        Gson gson = new Gson();
-        String totalPrice = gson.toJson(cart.getTotalPrice());
+        String totalPrice = String.format("%s %s",cart.getTotalPrice(), cart.getDefaultCurrency());
 
         resp.getWriter().write(totalPrice);
 

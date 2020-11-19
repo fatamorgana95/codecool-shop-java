@@ -1,11 +1,14 @@
 package com.codecool.shop.model;
 
+import java.util.Currency;
+
 public class LineItem extends BaseModel{
 
     private final float UNIT_PRICE;
     private int quantity;
     private float subTotalPrice = 0;
     private final int productId;
+    private Currency defaultCurrency;
 
     private final Product product;
 
@@ -13,6 +16,7 @@ public class LineItem extends BaseModel{
         super(name);
         this.product = product;
         this.productId = product.id;
+        this.defaultCurrency = product.getDefaultCurrency();
         this.quantity = 1;
         this.UNIT_PRICE = product.getDefaultPrice();
         this.subTotalPrice = UNIT_PRICE;
@@ -51,5 +55,9 @@ public class LineItem extends BaseModel{
 
     public boolean isClearable() {
         return (quantity < 1);
+    }
+
+    public Currency getDefaultCurrency() {
+        return defaultCurrency;
     }
 }
