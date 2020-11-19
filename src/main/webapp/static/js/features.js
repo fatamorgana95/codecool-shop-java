@@ -39,6 +39,12 @@ function filterBy(category, supplier) {
 function showFilteredProducts(products) {
     let container = document.querySelector(".row");
     let card = '';
+    if (products.length === 0){
+        card += `<div class="container">
+                    <i id="frown-icon" class="fa fa-frown-o fa-5x"></i><br>
+                    <text>   There are no dragons under these filters.</text>
+                </div>`
+    }else{
     for (let prod of products) {
         card +=
             `<div id="cardContainer" class="col-md-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100">
@@ -54,7 +60,7 @@ function showFilteredProducts(products) {
                         <button class="small-button" style="width:100px;" id="add-to-cart-button" data-id="${prod.id}">Add to cart</button>
                     </div>
                     </div>`
-    }
+    }}
     container.innerHTML = card;
     init();
 }
