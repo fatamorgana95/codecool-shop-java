@@ -12,6 +12,15 @@
     </header>
     <br><br>
     <div class="container">
+        <div class="form-row">
+            <div class="col-md-7,5 m-1 form-header">
+                <text>Total Cost</text>
+            </div>
+            <div class="col-md-2 m-1 form-header" align="right">
+                <text id="total" th:text="${cart.getTotalPrice()+ ' ' + cart.getDefaultCurrency()}">Quantity</text>
+            </div>
+        </div>
+        <br><br>
         <form id="payment">
             <p>Please select your payment type:</p>
             <input type="radio" id="credit-card" name="gender" value="credit-card">
