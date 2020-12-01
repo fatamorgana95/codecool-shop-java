@@ -3,10 +3,6 @@ package com.codecool.shop.controller;
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.model.Cart;
 import com.codecool.shop.model.LineItem;
-import com.google.gson.Gson;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.WebContext;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
