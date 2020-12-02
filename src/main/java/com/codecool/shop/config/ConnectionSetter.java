@@ -1,4 +1,4 @@
-package com.codecool.shop.util;
+package com.codecool.shop.config;
 
 import java.io.InputStream;
 import java.util.Properties;
