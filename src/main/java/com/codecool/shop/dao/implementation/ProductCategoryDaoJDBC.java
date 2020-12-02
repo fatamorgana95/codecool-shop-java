@@ -1,7 +1,7 @@
 package com.codecool.shop.dao.implementation;
 
+import com.codecool.shop.config.ConnectionSetter;
 import com.codecool.shop.dao.ProductCategoryDao;
-import com.codecool.shop.util.ConnectionSetter;
 import com.codecool.shop.model.ProductCategory;
 
 import javax.sql.DataSource;
@@ -69,7 +69,7 @@ public class ProductCategoryDaoJDBC implements ProductCategoryDao {
             ResultSet rs = conn.createStatement().executeQuery(sql);
             List<ProductCategory> result = new ArrayList<>();
             while (rs.next()) { // while result set pointer is positioned before or on last row read authors
-                ProductCategory category = new ProductCategory(rs.getString(2), rs.getString(3), rs.getString(4));
+                ProductCategory category = new ProductCategory(rs.getString(2), rs.getString(4), rs.getString(3));
                 category.setId(rs.getInt(1));
                 result.add(category);
             }
