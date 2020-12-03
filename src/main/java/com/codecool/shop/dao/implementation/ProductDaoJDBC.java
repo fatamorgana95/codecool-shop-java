@@ -116,6 +116,17 @@ public class ProductDaoJDBC implements ProductDao {
     }
 
     @Override
+    public void removeAll() {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "DELETE FROM product";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error while removing all product");
+        }
+    }
+
+    @Override
     public List<Product> getAll() {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "SELECT id, name, default_price, default_currency, description, product_category_id, supplier, image FROM product";
