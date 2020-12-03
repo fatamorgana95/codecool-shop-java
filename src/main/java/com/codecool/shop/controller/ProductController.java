@@ -1,19 +1,19 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.config.DaoSelector;
 import com.codecool.shop.dao.CartDao;
+import com.codecool.shop.dao.OrderDao;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 
 import com.codecool.shop.dao.SupplierDao;
-import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
-import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.dao.implementation.*;
 import com.codecool.shop.config.TemplateEngineUtil;
-import com.codecool.shop.dao.implementation.SupplierDaoMem;
 
-import com.codecool.shop.dao.implementation.CartDaoMem;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.config.TemplateEngineUtil;
+
 import com.codecool.shop.model.Cart;
 import com.codecool.shop.model.Product;
 import com.google.gson.Gson;
@@ -27,14 +27,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+        String daoType = DaoSelector.select();
+        ProductDao productDataStore = daoType.equals("memory") ? ProductDaoMem.getInstance() : ProductDaoJDBC.getInstance();
+
+        ProductCategoryDao productCategoryDataStore = daoType.equals("memory") ? ProductCategoryDaoMem.getInstance() : ProductCategoryDaoJDBC.getInstance();
  
         SupplierDao supplierDao = SupplierDaoMem.getInstance();
 
@@ -45,9 +49,7 @@ public class ProductController extends HttpServlet {
         WebContext context = new WebContext(req, resp, req.getServletContext());
         context.setVariable("category", productCategoryDataStore.getAll());
         context.setVariable("products", productDataStore.getAll());
-
         context.setVariable("supplier", supplierDao.getAll());
-
         context.setVariable("addedProductsQuantity", cart.getAddedProductsQuantity());
 
 
@@ -62,7 +64,8 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int productId =  Integer.parseInt(req.getParameter("productId"));
-        ProductDaoMem productDataStore = ProductDaoMem.getInstance();
+        String daoType = DaoSelector.select();
+        ProductDao productDataStore = daoType.equals("memory") ? ProductDaoMem.getInstance() : ProductDaoJDBC.getInstance();
         Product product = productDataStore.find(productId);
         Cart cart = Cart.getInstance();
         cart.addProduct(product);
