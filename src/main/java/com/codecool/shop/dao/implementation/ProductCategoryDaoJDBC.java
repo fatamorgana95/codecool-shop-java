@@ -91,5 +91,16 @@ public class ProductCategoryDaoJDBC implements ProductCategoryDao {
         }
     }
 
+    @Override
+    public void removeAll() {
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "DELETE FROM product_category";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error while removing all product categories.");
+        }
+    }
+
 
 }
