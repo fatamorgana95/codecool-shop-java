@@ -8,6 +8,8 @@ import com.codecool.shop.dao.implementation.OrderDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.model.*;
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import javax.servlet.ServletException;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 
 @WebServlet(urlPatterns = {"/transaction"})
 public class TransactionController extends HttpServlet {
+    private static final Logger logger = LoggerFactory.getLogger(TransactionController.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,6 +34,7 @@ public class TransactionController extends HttpServlet {
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
         if (isCompleted.equals("error")) {
+            logger.error("Transaction failed.");
             engine.process("transaction_error.html", context, resp.getWriter());
         }
         else {
@@ -39,6 +43,7 @@ public class TransactionController extends HttpServlet {
             lastOrder.setCart(cart);
             context.setVariable("order", lastOrder);
 
+            logger.error("Transaction completed.");
             engine.process("transaction_completed.html", context, resp.getWriter());
             cart.setProducts(new ArrayList<>());
         }

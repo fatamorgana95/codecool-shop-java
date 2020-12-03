@@ -3,6 +3,9 @@ package com.codecool.shop.controller;
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.model.Cart;
 import com.codecool.shop.model.LineItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +15,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/cart/change"})
 public class CartChangeController extends HttpServlet {
+    private static final Logger logger = LoggerFactory.getLogger(CartChangeController.class);
 
 
     @Override
@@ -25,6 +29,8 @@ public class CartChangeController extends HttpServlet {
 
         LineItem item = cart.getLineItemByLineItemId(itemId);
         cart.changeQuantityInLineItem(item, quantity);
+
+        logger.info(String.format("Changed %s's quantity to %s.", item.getName(), quantity));
 
 //        if (cart.getLineItems().size() == 0){
 //            TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
