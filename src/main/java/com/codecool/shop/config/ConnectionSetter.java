@@ -2,11 +2,15 @@ package com.codecool.shop.config;
 
 import java.io.InputStream;
 import java.util.Properties;
+
 import org.postgresql.ds.PGSimpleDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 
 public class ConnectionSetter {
+    private static final Logger logger = LoggerFactory.getLogger(ConnectionSetter.class);
 
     public static DataSource connect() {
         try {
@@ -26,36 +30,15 @@ public class ConnectionSetter {
             dataSource.setUser(user);
             dataSource.setPassword(password);
 
-            System.out.println("Trying to connect...");
+            logger.info("Trying to connect database...");
             dataSource.getConnection().close();
-            System.out.println("Connection OK");
+            logger.info("Connection OK");
 
             return dataSource;
-        }
-        catch(Exception e){
-            System.err.println("Connection error.");
+        } catch (Exception e) {
+            logger.error("Connection error.");
             return null;
         }
     }
 
-   /* public static Optional<Connection> getConnection() {
-        try {
-            FileInputStream inputStream = new FileInputStream("resources/connection.properties");
-            Properties properties = new Properties();
-            properties.load(inputStream);
-
-            String url = (String) properties.get("url");
-            String database = (String) properties.get("database");
-            String user = (String) properties.get("user");
-            String password = (String) properties.get("password");
-
-            Class.forName(database);
-
-            return Optional.of(DriverManager.getConnection(
-                    url, user, password));
-        }
-        catch (Exception e) {
-            System.err.println("Connection error.");
-            return Optional.empty();
-        }*/
 }

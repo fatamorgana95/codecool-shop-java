@@ -65,7 +65,8 @@ public class ProductDaoJDBC implements ProductDao {
             SupplierDao supplierDao = SupplierDaoMem.getInstance();
             Supplier supplier = null;
             for (Supplier suppy : supplierDao.getAll()) {
-                if (suppy.getName().equals(resultSet.getString(6))) {
+                String suppyTransformed = suppy.getName().replace(" ", "").toLowerCase();
+                if (suppyTransformed.equals(resultSet.getString(6).toLowerCase())) {
                     supplier = suppy;
                 }
             }

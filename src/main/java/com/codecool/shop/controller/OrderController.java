@@ -1,14 +1,8 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
-import com.codecool.shop.dao.CartDao;
-import com.codecool.shop.dao.implementation.CartDaoMem;
 import com.codecool.shop.dao.implementation.OrderDaoMem;
-import com.codecool.shop.dao.implementation.ProductDaoMem;
-import com.codecool.shop.model.Cart;
 import com.codecool.shop.model.Order;
-import com.codecool.shop.model.Product;
-import com.google.gson.Gson;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import javax.servlet.ServletException;
@@ -17,9 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(urlPatterns = {"/order"})
 public class OrderController extends HttpServlet {
+
+    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -45,6 +44,8 @@ public class OrderController extends HttpServlet {
         String shippingAddress = req.getParameter("shippingAddress");
 
         Order order = new Order(firstName, lastName, eMail, phoneNumber, country, city, zipCode, address, shippingCountry, shippingCity, shippingZipCode, shippingAddress);
+
+        logger.info("Created new order.");
 
         OrderDaoMem orderDaoMem = OrderDaoMem.getInstance();
         orderDaoMem.add(order);

@@ -1,8 +1,10 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.config.DaoSelector;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
+import com.codecool.shop.dao.implementation.ProductDaoJDBC;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.model.Product;
@@ -32,6 +34,7 @@ public class FilterController extends HttpServlet {
         String supplier = req.getParameter("supplier");
 
         List<Product> filteredProducts = new ArrayList<>();
+        //String daoType = DaoSelector.select();
         ProductDao productDataStore = ProductDaoMem.getInstance();
 
         if (category.equals("All Categories") && supplier.equals("All Suppliers")) {
