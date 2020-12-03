@@ -20,7 +20,8 @@ import com.google.gson.Gson;
 
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,12 +33,11 @@ import java.util.Properties;
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
-
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String daoType = DaoSelector.select();
         ProductDao productDataStore = daoType.equals("memory") ? ProductDaoMem.getInstance() : ProductDaoJDBC.getInstance();
-
         ProductCategoryDao productCategoryDataStore = daoType.equals("memory") ? ProductCategoryDaoMem.getInstance() : ProductCategoryDaoJDBC.getInstance();
  
         SupplierDao supplierDao = SupplierDaoMem.getInstance();

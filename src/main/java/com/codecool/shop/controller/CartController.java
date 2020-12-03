@@ -8,6 +8,8 @@ import com.codecool.shop.model.Cart;
 import com.codecool.shop.model.LineItem;
 import com.codecool.shop.model.Product;
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 import javax.servlet.ServletException;
@@ -15,15 +17,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(urlPatterns = {"/cart"})
 public class CartController extends HttpServlet {
+    private static final Logger logger = LoggerFactory.getLogger(CartController.class);
+
+    public CartController() throws IOException {
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CartDao cartDataStore = CartDaoMem.getInstance();
-
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
 
@@ -35,6 +44,7 @@ public class CartController extends HttpServlet {
             else {
                 context.setVariable("cart", lastCart);
                 engine.process("cart.html", context, resp.getWriter());
+
             }
         }
         catch (IndexOutOfBoundsException e) {
@@ -50,6 +60,7 @@ public class CartController extends HttpServlet {
         Cart cart = Cart.getInstance();
 
         LineItem item = cart.getLineItemByLineItemId(itemId);
+        logger.info(String.format("%s removed from the cart.", cart.getLineItemByLineItemId(itemId).getName()));
         cart.changeQuantityInLineItem(item, 0);
 
 
