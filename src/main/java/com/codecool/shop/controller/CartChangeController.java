@@ -32,12 +32,6 @@ public class CartChangeController extends HttpServlet {
 
         logger.info(String.format("Changed %s's quantity to %s.", item.getName(), quantity));
 
-//        if (cart.getLineItems().size() == 0){
-//            TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
-//            WebContext context = new WebContext(req, resp, req.getServletContext());
-//            engine.process("empty_cart.html", context, resp.getWriter());
-//        }
-//        else {
 
             String subtotalPrice = String.format("%s %s", item.getSubTotalPrice(), item.getDefaultCurrency());
             String totalPrice = String.format("%s %s", cart.getTotalPrice(), item.getDefaultCurrency());

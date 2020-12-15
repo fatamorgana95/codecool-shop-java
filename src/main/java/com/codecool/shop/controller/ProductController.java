@@ -25,7 +25,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
-    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+    private static final Logger logger = LoggerFactory.getLogger(CartController.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

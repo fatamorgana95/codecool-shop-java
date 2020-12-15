@@ -43,7 +43,7 @@ public class TransactionController extends HttpServlet {
             lastOrder.setCart(cart);
             context.setVariable("order", lastOrder);
 
-            logger.error("Transaction completed.");
+            logger.info("Transaction completed.");
             engine.process("transaction_completed.html", context, resp.getWriter());
             cart.setProducts(new ArrayList<>());
         }

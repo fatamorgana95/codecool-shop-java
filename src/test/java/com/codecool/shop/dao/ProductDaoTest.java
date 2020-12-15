@@ -23,7 +23,7 @@ class ProductDaoTest {
 
     @BeforeEach
     void beforeEach() {
-        //productDataStore.removeAll();
+        productDataStore.removeAll();
     }
 
     @BeforeAll
@@ -178,7 +178,7 @@ class ProductDaoTest {
         productDataStore.add(mockProduct);
         productDataStore.add(mockProduct2);
         productDataStore.add(mockProduct3);
-        //productDataStore.removeAll();
+        productDataStore.removeAll();
 
         int expected = 0;
 
