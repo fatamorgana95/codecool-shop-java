@@ -1,0 +1,44 @@
+2020-12-04 10:03:35 INFO  CartController:67 - Added Toothless to shopping cart.
+2020-12-04 10:03:35 INFO  CartController:72 - Added shopping cart to cartStore.
+2020-12-04 10:03:36 INFO  CartController:67 - Added Toothless to shopping cart.
+2020-12-04 10:03:37 INFO  CartController:67 - Added Toothless to shopping cart.
+2020-12-04 10:03:40 INFO  CartController:67 - Added 7 Headed Dragon to shopping cart.
+2020-12-04 10:03:41 INFO  CartController:67 - Added 7 Headed Dragon to shopping cart.
+2020-12-04 10:03:41 INFO  CartController:67 - Added 7 Headed Dragon to shopping cart.
+2020-12-04 10:03:45 INFO  CartChangeController:33 - Changed Toothless's quantity to 4.
+2020-12-04 10:03:45 INFO  CartChangeController:33 - Changed Toothless's quantity to 5.
+2020-12-04 10:03:45 INFO  CartChangeController:33 - Changed Toothless's quantity to 6.
+2020-12-04 10:03:46 INFO  CartChangeController:33 - Changed Toothless's quantity to 7.
+2020-12-04 10:03:47 INFO  CartController:57 - 7 Headed Dragon removed from the cart.
+2020-12-04 10:03:52 INFO  OrderController:48 - Created new order.
+2020-12-04 10:03:56 INFO  TransactionController:46 - Transaction completed.
+2020-12-04 10:41:57 INFO  ConnectionSetter:33 - Trying to connect database...
+2020-12-04 10:41:57 ERROR ConnectionSetter:39 - Connection error.
+2020-12-04 10:41:57 INFO  ConnectionSetter:33 - Trying to connect database...
+2020-12-04 10:41:57 ERROR ConnectionSetter:39 - Connection error.
+2020-12-04 10:46:51 INFO  ConnectionSetter:33 - Trying to connect database...
+2020-12-04 10:46:51 ERROR ConnectionSetter:39 - Connection error.
+2020-12-04 10:46:51 INFO  ConnectionSetter:33 - Trying to connect database...
+2020-12-04 10:46:51 ERROR ConnectionSetter:39 - Connection error.
+2020-12-04 10:47:35 INFO  ConnectionSetter:33 - Trying to connect database...
+2020-12-04 10:47:36 INFO  ConnectionSetter:35 - Connection OK
+2020-12-04 10:47:36 INFO  ConnectionSetter:33 - Trying to connect database...
+2020-12-04 10:47:36 INFO  ConnectionSetter:35 - Connection OK
+2020-12-04 10:47:43 INFO  CartController:67 - Added Toothless to shopping cart.
+2020-12-04 10:47:43 INFO  CartController:72 - Added shopping cart to cartStore.
+2020-12-04 10:47:43 INFO  CartController:67 - Added Toothless to shopping cart.
+2020-12-04 10:47:44 INFO  CartController:67 - Added Toothless to shopping cart.
+2020-12-04 10:47:44 INFO  CartController:67 - Added Toothless to shopping cart.
+2020-12-04 10:47:48 INFO  CartController:67 - Added Toothless to shopping cart.
+2020-12-04 10:47:51 INFO  CartController:57 - Toothless removed from the cart.
+2020-12-15 13:35:21 INFO  CartController:67 - Added Norwegian Ridgeback to shopping cart.
+2020-12-15 13:35:21 INFO  CartController:72 - Added shopping cart to cartStore.
+2020-12-15 13:35:21 INFO  CartController:67 - Added Norwegian Ridgeback to shopping cart.
+2020-12-15 13:35:21 INFO  CartController:67 - Added Norwegian Ridgeback to shopping cart.
+2020-12-15 13:35:34 INFO  CartChangeController:33 - Changed Norwegian Ridgeback's quantity to 4.
+2020-12-15 13:35:34 INFO  CartChangeController:33 - Changed Norwegian Ridgeback's quantity to 5.
+2020-12-15 13:35:34 INFO  CartChangeController:33 - Changed Norwegian Ridgeback's quantity to 6.
+2020-12-15 13:35:53 INFO  CartChangeController:33 - Changed Norwegian Ridgeback's quantity to 7.
+2020-12-15 13:35:53 INFO  CartChangeController:33 - Changed Norwegian Ridgeback's quantity to 8.
+2020-12-15 13:35:54 INFO  CartChangeController:33 - Changed Norwegian Ridgeback's quantity to 9.
+2020-12-15 13:35:54 INFO  CartChangeController:33 - Changed Norwegian Ridgeback's quantity to 10.

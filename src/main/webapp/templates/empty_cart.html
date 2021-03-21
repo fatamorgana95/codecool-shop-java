@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="header.html :: copy"></head>
+
+<body>
+
+<header th:replace="top_bar.html :: copy"></header>
+
+
+<!-- ======= Products Section ======= -->
+<section id="services" class="services section-bg">
+    <div>
+        <h1>Dragon Shop</h1>
+    </div>
+    <header class="section-header">
+        <h3>Shopping Cart</h3>
+    </header>
+    <br><br>
+    <div class="container">
+        <i id="frown-icon" class="fa fa-frown-o fa-5x"></i><br>
+        <text> There is no dragon in your shopping cart. </text>
+    </div>
+</section>
+<!-- End Services Section -->
+
+<div th:replace="footer.html :: copy"></div>
+
+<div th:replace="vendorAndJs.html :: copy"></div>
+<script src="static/js/cart.js"></script>
+
+
+</body>
+
+</html>

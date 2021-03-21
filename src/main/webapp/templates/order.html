@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="header.html :: copy"></head>
+<body>
+<header th:replace="top_bar.html :: copy"></header>
+<section id="services" class="services section-bg">
+    <div>
+        <h1>Dragon Shop</h1>
+    </div>
+    <header class="section-header">
+        <h3>Order Information</h3>
+    </header>
+    <br><br>
+    <div class="container">
+        <form class="needs-validation">
+            <div class="form-row">
+                <div class="col-md-3 m-1 form-header">
+                    <text>Personal Information</text>
+                </div>
+                <div class="col-md-3 m-1 form-header">
+                    <text>Billing Address</text>
+                </div>
+                <div class="col-md-3 m-1 form-header">
+                    <text>Shipping Address</text>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-3 m-1">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" class="form-control" id="first-name" placeholder="Hablaty">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" class="form-control" id="last-name" placeholder="Targaryen">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="text" class="form-control" id="email" placeholder="harry@potter.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone-number">Phone number</label>
+                        <input type="text" class="form-control" id="phone-number" placeholder="+36 12 345 6789">
+                    </div>
+                </div>
+                <div class="col-md-3 m-1">
+                    <div class="form-group">
+                        <label for="billing-country">Country</label>
+                        <input type="text" class="form-control" id="billing-country" placeholder="China">
+                    </div>
+                    <div class="form-group">
+                        <label for="billing-city">City</label>
+                        <input type="text" class="form-control" id="billing-city" placeholder="Winterfell">
+                    </div>
+                    <div class="form-group">
+                        <label for="billing-zipcode">Zipcode</label>
+                        <input type="text" class="form-control" id="billing-zipcode" placeholder="5551">
+                    </div>
+                    <div class="form-group">
+                        <label for="billing-address">Address</label>
+                        <input type="text" class="form-control" id="billing-address" placeholder="Swamp u. 24.">
+                    </div>
+                </div>
+                <div class="col-md-3 m-1">
+                    <div class="form-group">
+                        <label for="shipping-country">Country</label>
+                        <input type="text" class="form-control" id="shipping-country" placeholder="China">
+                    </div>
+                    <div class="form-group">
+                        <label for="shipping-city">City</label>
+                        <input type="text" class="form-control" id="shipping-city" placeholder="Winterfell">
+                    </div>
+                    <div class="form-group">
+                        <label for="shipping-zipcode">Zipcode</label>
+                        <input type="text" class="form-control" id="shipping-zipcode" placeholder="5551">
+                    </div>
+                    <div class="form-group">
+                        <label for="shipping-address">Address</label>
+                        <input type="text" class="form-control" id="shipping-address" placeholder="Swamp u. 24.">
+                    </div>
+                </div>
+            </div>
+            <input type="checkbox" id="billing-to-ship" name="billing-to-ship">
+            <label for="billing-to-ship"> Billing address is the same as Shipping address.</label><br>
+            <div class="form-row">
+                <div class="col-md-7,5 m-1 form-header">
+                    <div class="modal-footer">
+                        <button type="button" style="width:100px;" class="small-button" id="back" data-dismiss="back">Back</button>
+                        <button type="button" style="width:100px;" class="small-button" id="pay">Pay</button>
+                        <div id="snackbar">Invalid inputs, please try again.</div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<div th:replace="footer.html :: copy"></div>
+<div th:replace="vendorAndJs.html :: copy"></div>
+<script src="static/js/order.js"></script>
+</body>
+</html>

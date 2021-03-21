@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="header.html :: copy"></head>
+
+<body>
+
+<header th:replace="top_bar.html :: copy"></header>
+
+
+<!-- ======= Products Section ======= -->
+<section id="services" class="services section-bg">
+    <div>
+        <h1>Dragon Shop</h1>
+    </div>
+    <header class="section-header">
+        <h3>Shopping Cart</h3>
+    </header>
+    <br><br>
+    <div class="container">
+        <form class="needs-validation" novalidate>
+            <div class="form-row">
+                <div class="col-md-3 m-1 form-header">
+                    <text>Product</text>
+                </div>
+                <div class="col-md-3 m-1 form-header">
+                    <text>Quantity</text>
+                </div>
+                <div class="col-md-2 m-1 form-header">
+                    <text>Unit Price</text>
+                </div>
+                <div class="col-md-2 m-1 form-header">
+                    <text>Subtotal Price</text>
+                </div>
+            </div>
+            <div class="form-row" th:each="item,iterStat : ${cart.lineItems}">
+                <div class="col-md-3 m-1">
+                    <text th:text="${item.getName()}">Item name</text>
+                </div>
+                <div class="col-md-1 m-1">
+                    <input id="quantity-input" type="number" class="form-control" th:attr="data-id=${item.getId()}" min="1" th:value="${item.getQuantity()}" required>
+                </div>
+                <div class="col-md-1 m-1" align="center">
+                    <button class="small-button" id="remove-button" th:attr="data-id=${item.getId()}"><i class="fa fa-trash"></i></button>
+                </div>
+                <div class="col-md-2 m-1" align="right">
+                    <text th:text="${item.getUnitPrice() + ' ' + item.getDefaultCurrency()}">Unit Price</text>
+                </div>
+                <div class="col-md-2 m-1" align="right">
+                    <text id="subtotal" th:text="${item.getSubTotalPrice() + ' ' + item.getDefaultCurrency()}">Subtotal Price</text>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-7,5 m-1 form-header">
+                    <text>Total</text>
+                </div>
+                <div class="col-md-2 m-1 form-header" align="right">
+                    <text id="total" th:text="${cart.getTotalPrice()+ ' ' + cart.getDefaultCurrency()}">Quantity</text>
+                </div>
+            </div>
+            <div class="form-row">
+            <div class="col-md-7,5 m-1 form-header">
+            <div class="modal-footer">
+            <button class="small-button" id="home" style="width:100px;" type="button">Home</button>
+            <button class="small-button" id="check-out" style="width:100px;" type="button">Checkout</button>
+            </div>
+            </div>
+            </div>
+        </form>
+    </div>
+</section>
+<!-- End Services Section -->
+
+<div th:replace="footer.html :: copy"></div>
+
+<div th:replace="vendorAndJs.html :: copy"></div>
+<script src="static/js/cart.js"></script>
+
+
+</body>
+
+</html>

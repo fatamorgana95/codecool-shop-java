@@ -1,20 +1,25 @@
 package com.codecool.shop.model;
 
 import java.util.Currency;
+import java.util.Locale;
 
 public class Product extends BaseModel {
 
     private float defaultPrice;
     private Currency defaultCurrency;
-    private ProductCategory productCategory;
+    transient private ProductCategory productCategory;
     private Supplier supplier;
+    private String image;
+//    private final String CURRENCY;
 
 
-    public Product(String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier) {
+    public Product(String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier, String image) {
         super(name, description);
         this.setPrice(defaultPrice, currencyString);
+        this.setDefaultCurrency(Currency.getInstance(currencyString));
         this.setSupplier(supplier);
         this.setProductCategory(productCategory);
+        this.setImage(image);
     }
 
     public float getDefaultPrice() {
@@ -31,6 +36,14 @@ public class Product extends BaseModel {
 
     public void setDefaultCurrency(Currency defaultCurrency) {
         this.defaultCurrency = defaultCurrency;
+    }
+
+    public String getImage() {
+        return this.image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getPrice() {
@@ -75,4 +88,8 @@ public class Product extends BaseModel {
                 this.productCategory.getName(),
                 this.supplier.getName());
     }
+
+/*    public String getCURRENCY() {
+        return CURRENCY;
+    }*/
 }

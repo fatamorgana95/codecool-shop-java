@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="header.html :: copy"></head>
+
+<body>
+
+<header th:replace="top_bar.html :: copy"></header>
+
+
+<!-- ======= Products Section ======= -->
+<section id="services" class="services section-bg">
+    <div>
+        <h1>Dragon Shop</h1>
+    </div>
+    <header class="section-header">
+        <h3>Transaction completed!</h3>
+    </header>
+    <br><br>
+    <div class="container" data-aos="fade-up">
+        <i id="frown-icon" class="fa fa-smile-o fa-5x"></i><br>
+        <text> Transaction is completed! Your dragon will be shipped soon! </text>
+        <p><strong>Your order information:</strong></p>
+        <div class="row">
+        <div class="col-md-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100">
+            <div class="box">
+                <h4 class="title">Personal information:</h4>
+                <text>First name: </text><p class="first-name" th:text="${order.firstName}">First name</p>
+                <text>Last name: </text><p class="last-name" th:text="${order.lastName}">Last name</p>
+                <text>Email: </text><p class="email" th:text="${order.eMail}">Email</p>
+                <text>Phone number: </text><p class="phone-number" th:text="${order.phoneNumber}">Phone number</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100">
+            <div class="box">
+                <h4 class="title">Billing information:</h4>
+                <text>Country: </text><p class="billing-country" th:text="${order.country}">Country</p>
+                <text>City: </text><p class="billing-city" th:text="${order.city}">City</p>
+                <text>Zipcode: </text><p class="billing-zipcode" th:text="${order.zipCode}">Zipcode</p>
+                <text>Address: </text><p class="billing-address" th:text="${order.address}">Address</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100">
+            <div class="box">
+                <h4 class="title">Shipping information:</h4>
+                <text>Country: </text><p class="shipping-country" th:text="${order.shippingCountry}">Country</p>
+                <text>City: </text><p class="shipping-city" th:text="${order.shippingCity}">City</p>
+                <text>Zipcode: </text><p class="shipping-zipcode" th:text="${order.shippingZipCode}">Zipcode</p>
+                <text>Address: </text><p class="shipping-address" th:text="${order.shippingAddress}">Address</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100">
+            <div class="box">
+                <h4 class="title">Ordered items:</h4>
+                <p class="description" th:text="${item.name + ' (' + item.getQuantity() + ' piece)'}" th:each="item,iterStat : ${order.getCart().getLineItems()}">Item name</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-7,5 m-1 form-header">
+            <div class="modal-footer">
+                <button type="button" style="width:100px;" class="small-button" id="homepage" data-dismiss="homepage">Homepage</button>
+            </div>
+        </div>
+    </div>
+    <p> Further information in the email, if something went wrong please contact us, at: <a>dragon@tamers.com</a> </p>
+</section>
+<!-- End Services Section -->
+
+<div th:replace="footer.html :: copy"></div>
+
+<div th:replace="vendorAndJs.html :: copy"></div>
+<script src="static/js/transactionCompleted.js"></script>
+<script src="static/js/main.js"></script>
+
+
+</body>
+
+</html>
